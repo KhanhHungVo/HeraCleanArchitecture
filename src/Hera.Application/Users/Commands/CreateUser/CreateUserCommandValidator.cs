@@ -1,5 +1,6 @@
 using FluentValidation;
-namespace Hera.Application.Users.CreateUser
+
+namespace Hera.Application.Users.Commands.CreateUser
 {
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {

@@ -9,6 +9,16 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.4.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hera.Domain\Hera.Domain.csproj" />
+    <ProjectReference Include="..\Hera.Infrastructure\Hera.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Mappings\" />
   </ItemGroup>
 
 </Project>
