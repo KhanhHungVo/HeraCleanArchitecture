@@ -35,6 +35,4 @@ namespace Hera.Application.Users.Commands.CreateUser
             return user.Id;
         }
     }
-
-
 }
