@@ -1,5 +1,5 @@
+using Hera.Application.Common.Interfaces;
 using Hera.Domain.Entities;
-using Hera.Infrastructure.Persistence;
 using MediatR;
 
 namespace Hera.Application.Users.Commands.CreateUser
@@ -14,9 +14,9 @@ namespace Hera.Application.Users.Commands.CreateUser
 
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
-        private readonly HeraDbContext _context;
+        private readonly IHeraDbContext _context;
 
-        public CreateUserCommandHandler(HeraDbContext context)
+        public CreateUserCommandHandler(IHeraDbContext context)
         {
             _context = context;
         }

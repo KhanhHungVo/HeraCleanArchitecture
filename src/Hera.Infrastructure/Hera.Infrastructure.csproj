@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hera.Domain\Hera.Domain.csproj" />
+    <ProjectReference Include="..\Hera.Application\Hera.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,12 @@
 ﻿using Hera.Application.Common.Exceptions;
+using Hera.Application.Common.Interfaces;
 using Hera.Domain.Entities;
-using Hera.Infrastructure.Persistence;
 using MediatR;
 
 namespace Hera.Application.Users.Commands.UpdateUser
 {
 
-        public class UpdateUserCommand : IRequest
+    public class UpdateUserCommand : IRequest
         {
             public  int Id { get; set; }
             public string FirstName { get; set; }
@@ -16,9 +16,9 @@ namespace Hera.Application.Users.Commands.UpdateUser
 
         public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         {
-            private readonly HeraDbContext _context;
+            private readonly IHeraDbContext _context;
 
-            public UpdateUserCommandHandler(HeraDbContext context)
+            public UpdateUserCommandHandler(IHeraDbContext context)
             {
                 _context = context;
             }

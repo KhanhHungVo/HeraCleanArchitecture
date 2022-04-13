@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Hera.Infrastructure.Persistence;
+using Hera.Application.Common.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hera.Application.Users.Queries
 {
@@ -17,9 +15,9 @@ namespace Hera.Application.Users.Queries
     public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, UserDto>
     {
         private readonly IMapper _mapper;
-        private readonly HeraDbContext _context;
+        private readonly IHeraDbContext _context;
 
-        public GetUserByIdHandler(HeraDbContext context, IMapper mapper)
+        public GetUserByIdHandler(IHeraDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
