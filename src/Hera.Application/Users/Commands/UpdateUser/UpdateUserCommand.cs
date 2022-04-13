@@ -16,9 +16,9 @@ namespace Hera.Application.Users.Commands.UpdateUser
 
         public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         {
-            private readonly HeraDbContext _context;
+            private readonly IHeraDbContext _context;
 
-            public UpdateUserCommandHandler(HeraDbContext context)
+            public UpdateUserCommandHandler(IHeraDbContext context)
             {
                 _context = context;
             }

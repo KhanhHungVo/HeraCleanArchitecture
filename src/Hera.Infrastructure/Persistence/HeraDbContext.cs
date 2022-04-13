@@ -11,7 +11,7 @@ namespace Hera.Infrastructure.Persistence
         {
         }
 
-        public DbSet<User> Users => throw new NotImplementedException();
+        public DbSet<User> Users { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Hera.Infrastructure.Persistence;
+using Hera.Application.Common.Interfaces;
 using MediatR;
 
 namespace Hera.Application.Users.Queries
