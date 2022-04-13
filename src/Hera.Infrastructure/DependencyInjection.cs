@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Hera.Application.Common.Interfaces;
 
 namespace Hera.Infrastructure
 {
@@ -11,6 +12,7 @@ namespace Hera.Infrastructure
             IConfiguration configuration)
         {
             ConfigureDatabases(services, configuration);
+            services.AddScoped<IHeraDbContext, HeraDbContext>();
             return services;
         }
         private static void ConfigureDatabases(IServiceCollection services, IConfiguration configuration)

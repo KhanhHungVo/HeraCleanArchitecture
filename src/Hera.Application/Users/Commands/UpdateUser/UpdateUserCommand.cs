@@ -1,27 +1,27 @@
 ﻿using Hera.Application.Common.Exceptions;
+using Hera.Application.Common.Interfaces;
 using Hera.Domain.Entities;
-using Hera.Infrastructure.Persistence;
 using MediatR;
 
 namespace Hera.Application.Users.Commands.UpdateUser
 {
 
-    public class UpdateUserCommand : IRequest
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string UserName { get; set; }
-    }
-
-    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
-    {
-        private readonly HeraDbContext _context;
-
-        public UpdateUserCommandHandler(HeraDbContext context)
+        public class UpdateUserCommand : IRequest
         {
-            _context = context;
+            public  int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string UserName { get; set; }
         }
+
+        public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
+        {
+            private readonly HeraDbContext _context;
+
+            public UpdateUserCommandHandler(HeraDbContext context)
+            {
+                _context = context;
+            }
 
         public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {

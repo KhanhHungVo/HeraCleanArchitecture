@@ -1,6 +1,6 @@
 ﻿using Hera.Application.Common.Exceptions;
+using Hera.Application.Common.Interfaces;
 using Hera.Domain.Entities;
-using Hera.Infrastructure.Persistence;
 using MediatR;
 
 namespace Hera.Application.Users.Commands.DeleteUser
@@ -16,9 +16,9 @@ namespace Hera.Application.Users.Commands.DeleteUser
 
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
     {
-        private readonly HeraDbContext _context;
+        private readonly IHeraDbContext _context;
 
-        public DeleteUserCommandHandler(HeraDbContext context)
+        public DeleteUserCommandHandler(IHeraDbContext context)
         {
             _context = context;
         }
