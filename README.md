@@ -11,16 +11,17 @@
 * Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 * Install SQL server (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
-* dotnet build
-* dotnet run --project hera.webapi
+* `dotnet dev-certs https --trust`
+* `dotnet build`
+* `dotnet run --project hera.webapi`
 * Open swagger by access link https://localhost:7157/
 
 ### Database Migrations
 
 * Migration EF core (https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
     * cd src
-    * (Not existing DB) dotnet ef migrations -s hera.webapi -p hera.infrastructure  add InitialCreate
-    * dotnet ef -s hera.webapi -p hera.infrastructure database update
+    * (Not existing DB)`dotnet ef migrations -s hera.webapi -p hera.infrastructure  add InitialCreate`
+    * `dotnet ef -s hera.webapi -p hera.infrastructure database update`
 
 
 To use `dotnet-ef` for your migrations please add the following flags to your command (values assume you are executing from repository root)

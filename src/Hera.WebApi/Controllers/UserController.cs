@@ -35,8 +35,9 @@ namespace Hera.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id, DeleteUserCommand command)
+        public async Task<IActionResult> Delete(int id)
         {
+            var command = new DeleteUserCommand(id);
             if (id != command.Id)
             {
                 return BadRequest();

@@ -7,6 +7,10 @@ namespace Hera.Application.Users.Commands.DeleteUser
 {
     public class DeleteUserCommand : IRequest
     {
+        public DeleteUserCommand(int id)
+        {
+            Id = id;
+        }
         public  int Id { get; set; }
     }
 
@@ -20,7 +24,7 @@ namespace Hera.Application.Users.Commands.DeleteUser
         }
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Users.FindAsync( request.Id, cancellationToken);
+            var entity = await _context.Users.FindAsync( new object[] {request.Id}, cancellationToken);
 
             if (entity == null)
             {

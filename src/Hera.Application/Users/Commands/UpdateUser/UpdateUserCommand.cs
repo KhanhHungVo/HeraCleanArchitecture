@@ -6,37 +6,37 @@ using MediatR;
 namespace Hera.Application.Users.Commands.UpdateUser
 {
 
-        public class UpdateUserCommand : IRequest
+    public class UpdateUserCommand : IRequest
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserName { get; set; }
+    }
+
+    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
+    {
+        private readonly HeraDbContext _context;
+
+        public UpdateUserCommandHandler(HeraDbContext context)
         {
-            public  int Id { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string UserName { get; set; }
+            _context = context;
         }
 
-        public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
+        public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            private readonly HeraDbContext _context;
-
-            public UpdateUserCommandHandler(HeraDbContext context)
+            var user = await _context.Users.FindAsync(new object[] { request.Id }, cancellationToken);
+            if (user == null)
             {
-                _context = context;
+                throw new NotFoundException(nameof(User), request.Id);
             }
 
-            public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
-            {
-                var user = await _context.Users.FindAsync(request.Id, cancellationToken);
-                if (user == null)
-                {
-                    throw new NotFoundException(nameof(User), request.Id);
-                }
-
-                user.FirstName = request.FirstName;
-                user.LastName = request.LastName;
-                user.UserName = request.UserName;
-                await _context.SaveChangesAsync();
-                return Unit.Value;
-            }
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.UserName = request.UserName;
+            await _context.SaveChangesAsync();
+            return Unit.Value;
         }
+    }
 
 }
