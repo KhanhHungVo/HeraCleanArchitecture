@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
-
+using Hera.Application.Common.Interfaces;
 
 namespace Hera.Application
 {
