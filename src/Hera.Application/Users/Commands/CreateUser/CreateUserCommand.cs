@@ -10,6 +10,7 @@ namespace Hera.Application.Users.Commands.CreateUser
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string Email { get; set; }
     }
 
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
@@ -28,7 +29,8 @@ namespace Hera.Application.Users.Commands.CreateUser
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                Password = request.Password
+                Password = request.Password,
+                Email = request.Email,
             };
             await  _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();

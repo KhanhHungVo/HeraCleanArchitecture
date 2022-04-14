@@ -12,6 +12,7 @@ namespace Hera.Application.Users.Commands.UpdateUser
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string UserName { get; set; }
+            public string Email { get; set; }
         }
 
         public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
@@ -34,6 +35,7 @@ namespace Hera.Application.Users.Commands.UpdateUser
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
             user.UserName = request.UserName;
+            user.Email = request.Email;
             await _context.SaveChangesAsync();
             return Unit.Value;
         }
