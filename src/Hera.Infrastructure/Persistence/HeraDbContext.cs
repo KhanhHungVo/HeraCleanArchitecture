@@ -1,3 +1,4 @@
+using System.Reflection;
 using Hera.Application.Common.Interfaces;
 using Hera.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,11 @@ namespace Hera.Infrastructure.Persistence
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

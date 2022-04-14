@@ -8,7 +8,10 @@ namespace Hera.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.UserName).IsRequired();
+            builder.Property(x => x.Password).IsRequired();
+            builder.HasData(new User
+                { Id = 1, Email = "heraadmin@gmail.com", UserName = "heraadmin", Password = "123456"});
         }
     }
 }
