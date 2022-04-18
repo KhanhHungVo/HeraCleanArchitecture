@@ -16,25 +16,28 @@ namespace Hera.Application.Users.Commands.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
         private readonly IHeraDbContext _context;
+        private readonly IUserService _userService;
 
-        public CreateUserCommandHandler(IHeraDbContext context)
+        public CreateUserCommandHandler(IHeraDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new User
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserName = request.UserName,
-                Password = request.Password,
-                Email = request.Email,
-            };
-            await  _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return user.Id;
+            //var user = new User
+            //{
+            //    FirstName = request.FirstName,
+            //    LastName = request.LastName,
+            //    UserName = request.UserName,
+            //    Password = request.Password,
+            //    Email = request.Email,
+            //};
+            //await  _context.Users.AddAsync(user);
+            //await _context.SaveChangesAsync();
+            //return user.Id;
+            return await _userService.RegisterUser(request);
         }
     }
 }

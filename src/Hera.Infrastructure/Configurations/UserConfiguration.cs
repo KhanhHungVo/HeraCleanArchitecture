@@ -11,7 +11,7 @@ namespace Hera.Infrastructure.Configurations
             builder.Property(x => x.UserName).IsRequired();
             builder.Property(x => x.Password).IsRequired();
             builder.HasData(new User
-                { Id = 1, Email = "heraadmin@gmail.com", UserName = "heraadmin", Password = "123456"});
+                { Id = 1, Email = "heraadmin@gmail.com", UserName = "heraadmin", Password = "$2a$12$5Eh7piUI9mmYADj7FE99deuQvFoSnPvW13n9GvgR/ijGoI5ZDAo9." });
         }
     }
 }

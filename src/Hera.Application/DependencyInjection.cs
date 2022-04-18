@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Hera.Application.Common.Interfaces;
+using Hera.Application.Users.Services;
 
 namespace Hera.Application
 {
@@ -11,6 +12,7 @@ namespace Hera.Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddScoped<IUserService,UserService>();
             return services;
         }
        
