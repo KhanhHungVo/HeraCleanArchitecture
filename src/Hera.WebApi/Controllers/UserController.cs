@@ -1,4 +1,5 @@
-﻿using Hera.Application.Users.Commands.CreateUser;
+﻿using Hera.Application.Users.Commands.AuthenticateUser;
+using Hera.Application.Users.Commands.CreateUser;
 using Hera.Application.Users.Commands.DeleteUser;
 using Hera.Application.Users.Commands.UpdateUser;
 using Hera.Application.Users.Queries;
@@ -17,6 +18,13 @@ namespace Hera.WebApi.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate(AuthenticateCommand command)
+        {
+            return  Ok(await _mediator.Send(command));
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserCommand command)
