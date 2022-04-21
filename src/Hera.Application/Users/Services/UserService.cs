@@ -1,7 +1,11 @@
 using AutoMapper;
+using Hera.Application.Common.Helper;
 using Hera.Application.Common.Interfaces;
+using Hera.Application.Users.Commands.AuthenticateUser;
 using Hera.Application.Users.Commands.CreateUser;
 using Hera.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Hera.Application.Users.Services
 {
@@ -9,11 +13,13 @@ namespace Hera.Application.Users.Services
     {
         private readonly IHeraDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _config;
 
-        public UserService(IMapper mapper, IHeraDbContext context)
+        public UserService(IMapper mapper, IHeraDbContext context, IConfiguration config)
         {
             _mapper = mapper;
             _context = context;
+            _config = config;
         }
 
         public async Task<int> RegisterUser(CreateUserCommand userCommand)
@@ -33,18 +39,18 @@ namespace Hera.Application.Users.Services
             return user.Id;
         }
 
-        //public AuthenticateResponse Authenticate(AuthenticateRequest model)
-        //{
-        //    var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
+        public async Task<AuthenticateResponse> Authenticate(AuthenticateCommand model)
+        {
+           var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == model.UserName);
 
-        //    // validate
-        //    if (user == null || !BCrypt.Verify(model.Password, user.Password))
-        //        throw new AppException("Username or password is incorrect");
+           // validate
+           if (user == null || !BCrypt.Net.BCrypt.Verify(model.PassWord, user.Password))
+               throw new Exception("Username or password is incorrect");
 
-        //    // authentication successful
-        //    var response = _mapper.Map<AuthenticateResponse>(user);
-        //    response.Token = _jwtUtils.GenerateToken(user);
-        //    return response;
-        //}
+           // authentication successful
+           var response = _mapper.Map<AuthenticateResponse>(user);
+           response.Token = JwtHelper.GenerateToken(user, _config["AppSettings:Secret"]);
+           return response;
+        }
     }
 }

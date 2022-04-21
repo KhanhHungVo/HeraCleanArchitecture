@@ -19,6 +19,7 @@
 ### Database Migrations
 
 * Migration EF core (https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+    * Cmd reference (https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
     * cd src
     * (Not existing DB)`dotnet ef migrations -s hera.webapi -p hera.infrastructure  add InitialCreate`
     * `dotnet ef -s hera.webapi -p hera.infrastructure database update`
@@ -31,5 +32,5 @@ To use `dotnet-ef` for your migrations please add the following flags to your co
 * `--output-dir src/Infrastructure/Persistence/Migrations`
 ## Docker configuration
 
-* Build docker `docker build -f "Hera.WebApi\Dockerfile" -r heraapi .`
+* Build docker `docker build -f "Hera.WebApi\Dockerfile" -t heraapi .`
 * Run docker ` docker  run -p 8080:80 -d heraapi` 
