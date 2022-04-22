@@ -3,6 +3,7 @@ using Hera.Application.Users.Commands.CreateUser;
 using Hera.Application.Users.Commands.DeleteUser;
 using Hera.Application.Users.Commands.UpdateUser;
 using Hera.Application.Users.Queries;
+using Hera.WebApi.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +55,7 @@ namespace Hera.WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllUsers()
         {
             return  Ok(await _mediator.Send(new GetAllUserQuery()));
