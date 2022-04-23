@@ -49,7 +49,7 @@ namespace Hera.Application.Users.Services
 
            // authentication successful
            var response = _mapper.Map<AuthenticateResponse>(user);
-           response.Token = JwtHelper.GenerateToken(user, _config["AppSettings:Secret"]);
+           response.Token = JwtHelper.GenerateToken(user, _config["Jwt:Issuer"], _config["Jwt:Secret"]);
            return response;
         }
     }

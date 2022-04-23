@@ -31,7 +31,7 @@ namespace Hera.WebApi.Middleware
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_config["AppSettings:Secret"]);
+                var key = Encoding.ASCII.GetBytes(_config["Jwt:Secret"]);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

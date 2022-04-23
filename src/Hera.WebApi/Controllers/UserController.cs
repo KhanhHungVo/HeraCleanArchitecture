@@ -3,13 +3,14 @@ using Hera.Application.Users.Commands.CreateUser;
 using Hera.Application.Users.Commands.DeleteUser;
 using Hera.Application.Users.Commands.UpdateUser;
 using Hera.Application.Users.Queries;
-using Hera.WebApi.Authorization;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hera.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
@@ -20,6 +21,7 @@ namespace Hera.WebApi.Controllers
             _mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(AuthenticateCommand command)
         {
@@ -27,6 +29,7 @@ namespace Hera.WebApi.Controllers
         }
 
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserCommand command)
         {
