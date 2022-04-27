@@ -13,7 +13,7 @@
 
 * `dotnet dev-certs https --trust`
 * `dotnet build`
-* `dotnet run --project hera.webapi`
+* `dotnet run --project src/hera.webapi`
 * Open swagger by access link https://localhost:7157/
 
 ### Database Migrations
@@ -33,4 +33,5 @@ To use `dotnet-ef` for your migrations please add the following flags to your co
 ## Docker configuration
 
 * Build docker `docker build -f "Hera.WebApi\Dockerfile" -t heraapi .`
-* Run docker ` docker  run -p 8080:80 -d heraapi` 
+* Run docker `docker  run -p 8080:80 -d heraapi` 
+* Run docker compose `docker-compose up`
