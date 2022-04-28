@@ -6,10 +6,10 @@ namespace Hera.WebApi.Controllers
     [Route("api/[controller]")]
     public class CoinMarketCapController : ControllerBase
     {
-        private readonly ICoinMarketCapClient _coinMarketCapClient;
+        private readonly ICoinMarketCapService _coinMarketCapClient;
         private readonly ILogger _logger;
 
-        public CoinMarketCapController(ICoinMarketCapClient cryptoClient, ILogger<CoinMarketCapController> logger
+        public CoinMarketCapController(ICoinMarketCapService cryptoClient, ILogger<CoinMarketCapController> logger
         ) 
         {
             _coinMarketCapClient = cryptoClient;
