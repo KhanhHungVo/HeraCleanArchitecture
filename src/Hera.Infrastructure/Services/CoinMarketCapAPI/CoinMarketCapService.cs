@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Hera.Infrastructure.Services.CoinMarketCapAPI
 {
-    public class CoinMarketCapClient : ICoinMarketCapClient
+    public class CoinMarketCapService : ICoinMarketCapService
     {
         public const string API_KEY = "b447a55c-e07c-4926-92e7-80ecc22aa461";
         public const string BASE_URL = "https://pro-api.coinmarketcap.com/v1/";
@@ -18,7 +18,7 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             BaseAddress = new Uri(BASE_URL)
         };
 
-        public CoinMarketCapClient() : base()
+        public CoinMarketCapService() : base()
         {
             HttpClient.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", API_KEY);
             HttpClient.DefaultRequestHeaders.Add("Accepts", "application/json");
