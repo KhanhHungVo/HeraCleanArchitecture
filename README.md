@@ -18,11 +18,11 @@
 
 ### Database Migrations
 
-* Migration EF core (https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+* Migration EF core 
+    * How to install, manage migrations (https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
     * Cmd reference (https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
-    * cd src
-    * (Not existing DB)`dotnet ef migrations -s hera.webapi -p hera.infrastructure  add InitialCreate`
-    * `dotnet ef -s hera.webapi -p hera.infrastructure database update`
+    * apply new migration `dotnet ef migrations -s src/hera.webapi -p src/hera.infrastructure  add InitialCreate`
+    * create or update db `dotnet ef -s src/hera.webapi -p src/hera.infrastructure database update`
 
 
 To use `dotnet-ef` for your migrations please add the following flags to your command (values assume you are executing from repository root)

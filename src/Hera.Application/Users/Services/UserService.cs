@@ -29,6 +29,7 @@ namespace Hera.Application.Users.Services
                 throw new Exception("Username '" + userCommand.UserName + "' is already taken");
 
             var user = _mapper.Map<User>(userCommand);
+            user.Role = Role.Basic;
 
             // hash password
             user.Password = BCrypt.Net.BCrypt.HashPassword(userCommand.Password);
@@ -45,7 +46,7 @@ namespace Hera.Application.Users.Services
 
            // validate
            if (user == null || !BCrypt.Net.BCrypt.Verify(model.PassWord, user.Password))
-               throw new Exception("Username or password is incorrect");
+               throw new UnauthorizedAccessException("Username or password is incorrect");
 
            // authentication successful
            var response = _mapper.Map<AuthenticateResponse>(user);

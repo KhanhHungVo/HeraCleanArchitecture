@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Hera.Application;
 using Hera.Infrastructure;
 using Hera.WebApi.Middleware;
@@ -10,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+{
+    x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -67,6 +71,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<JwtMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
