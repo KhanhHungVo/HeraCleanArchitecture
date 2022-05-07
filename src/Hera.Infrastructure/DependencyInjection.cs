@@ -14,7 +14,7 @@ namespace Hera.Infrastructure
         {
             ConfigureDatabases(services, configuration);
             services.AddScoped<IHeraDbContext, HeraDbContext>();
-            services.AddScoped<ICoinMarketCapClient, CoinMarketCapClient>();
+            services.AddScoped<ICoinMarketCapService, CoinMarketCapService>();
             return services;
         }
         private static void ConfigureDatabases(IServiceCollection services, IConfiguration configuration)
