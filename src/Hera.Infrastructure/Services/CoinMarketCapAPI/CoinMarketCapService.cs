@@ -28,9 +28,9 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        public virtual async Task<List<CoinBasicInfo>> GetListCoinBasicInfo(int start, int limit, string sortColumn = "MarketCap", string sortOrder = "")
+        public virtual async Task<List<CryptoCoin>> GetListCoinBasicInfo(int start, int limit, string sortColumn = "MarketCap", string sortOrder = "")
         {
-            var rs = new List<CoinBasicInfo>();
+            var rs = new List<CryptoCoin>();
             var rqParams = new ListingLatestRq()
             {
                 Start = start,
@@ -45,13 +45,13 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
                     rs.Add(MapToCoinBasicInfo(item));
                 }
             }
-            rs = SortHelper<CoinBasicInfo>.SortBy(rs, sortColumn, sortOrder).ToList();
+            rs = SortHelper<CryptoCoin>.SortBy(rs, sortColumn, sortOrder).ToList();
             return rs;
         }
 
-        public async Task<CoinBasicInfo> GetCoinBasicInfo(string symbol)
+        public async Task<CryptoCoin> GetCoinBasicInfo(string symbol)
         {
-            var rs = new CoinBasicInfo();
+            var rs = new CryptoCoin();
             var rqParams = new ListingLatestDataRs()
             {
                 Symbol = symbol
@@ -60,7 +60,6 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             rs = MapToCoinBasicInfo(coin.Data);
             return rs;
         }
-
 
         public async Task<Response<List<ListingLatestDataRs>>> makeAPICall()
         {
@@ -80,7 +79,7 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             //var result = JsonConvert.DeserializeObject<Response<List<ListingLatestDataRs>>>(content);
             //return result;
 
-            var rs = new List<CoinBasicInfo>();
+            var rs = new List<CryptoCoin>();
             var rqParams = new ListingLatestRq()
             {
                 Start = 1,
@@ -117,9 +116,9 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
 
             return string.Join(string.Empty, encodedValues);
         }
-        public CoinBasicInfo MapToCoinBasicInfo(ListingLatestDataRs item)
+        public CryptoCoin MapToCoinBasicInfo(ListingLatestDataRs item)
         {
-            var dto = new CoinBasicInfo();
+            var dto = new CryptoCoin();
             dto.MarketCapRanking = item.CmcRank;
             dto.Name = item.Name;
             dto.Symbol = item.Symbol;
@@ -134,10 +133,10 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             dto.CirculatingSupply = item.CirculatingSupply;
             return dto;
         }
-        public CoinBasicInfo MapToCoinBasicInfo(Dictionary<string, QuoteLatestDataRs> dict)
+        public CryptoCoin MapToCoinBasicInfo(Dictionary<string, QuoteLatestDataRs> dict)
         {
             var item = dict.First().Value;
-            var dto = new CoinBasicInfo();
+            var dto = new CryptoCoin();
             dto.MarketCapRanking = item.cmc_rank;
             dto.Name = item.name;
             dto.Symbol = item.symbol;

@@ -13,6 +13,8 @@ namespace Hera.Infrastructure.Persistence
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<UserFavorite> UserFavorites { get; set; }
+        public DbSet<CryptoCoin> CryptoCoins { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {
