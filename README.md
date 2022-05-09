@@ -10,6 +10,7 @@
 
 * Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 * Install SQL server (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+* For Mac M1 using docker (https://database.guide/how-to-install-sql-server-on-an-m1-mac-arm64/)
 
 * `dotnet dev-certs https --trust`
 * `dotnet build`
