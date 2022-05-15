@@ -20,7 +20,7 @@ namespace Hera.WebApi.Controllers
         public async Task<IActionResult> Index()
         {
             var result = await _coinMarketCapService.makeAPICall();
-            _logger.LogInformation("test");
+            _logger.LogInformation("test calling to coin market cap api ");
             return Ok(result);
         }
 

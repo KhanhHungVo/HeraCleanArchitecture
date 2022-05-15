@@ -33,6 +33,12 @@ To use `dotnet-ef` for your migrations please add the following flags to your co
 * `--output-dir src/Infrastructure/Persistence/Migrations`
 ## Docker configuration
 
-* Build docker `docker build -f "Hera.WebApi\Dockerfile" -t heraapi .`
+* Build docker `docker build -f "src\Hera.WebApi\Dockerfile" -t heraapi .`
 * Run docker `docker  run -p 8080:80 -d heraapi` 
-* Run docker compose `docker-compose up`
+
+* Run docker compose 
+    * Docker compose with https (https://docs.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-6.0)
+       - Windows using linux container `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }`
+       - Mac or Linux  `dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }`
+       - `dotnet dev-certs https --trust`
+    * Start the container `docker-compose -f "docker-compose.yaml" up -d`

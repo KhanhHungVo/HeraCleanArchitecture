@@ -5,9 +5,13 @@ services:
             context: .
             dockerfile: src/Hera.WebApi/Dockerfile  
         environment:
-            - "ConnectionStrings__HeraDatabase=Server=db;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
+            - "ConnectionStrings__HeraDatabase=Server=localhost;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
+            # - ASPNETCORE_URLS=https://+:443;http://+:80
+            # - "ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd"
+            # - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
         ports:
             - "8000:80"
+            # - "8001:443"
         depends_on:
             - db
     db:

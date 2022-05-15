@@ -10,13 +10,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Hera.WebApi/Hera.WebApi.csproj", "Hera.WebApi/"]
-COPY ["Hera.Infrastructure/Hera.Infrastructure.csproj", "Hera.Infrastructure/"]
-COPY ["Hera.Domain/Hera.Domain.csproj", "Hera.Domain/"]
-COPY ["Hera.Application/Hera.Application.csproj", "Hera.Application/"]
-RUN dotnet restore "Hera.WebApi/Hera.WebApi.csproj"
+COPY ["src/Hera.WebApi/Hera.WebApi.csproj", "src/Hera.WebApi/"]
+COPY ["src/Hera.Infrastructure/Hera.Infrastructure.csproj", "src/Hera.Infrastructure/"]
+COPY ["src/Hera.Domain/Hera.Domain.csproj", "src/Hera.Domain/"]
+COPY ["src/Hera.Application/Hera.Application.csproj", "src/Hera.Application/"]
+RUN dotnet restore "src/Hera.WebApi/Hera.WebApi.csproj"
 COPY . .
-WORKDIR "/src/Hera.WebApi"
+WORKDIR "/src/src/Hera.WebApi"
 RUN dotnet build "Hera.WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
