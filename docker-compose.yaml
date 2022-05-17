@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: src/Hera.WebApi/Dockerfile  
         environment:
-            - "ConnectionStrings__HeraDatabase=Server=localhost;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
+            - "ConnectionStrings__HeraDatabase=Server=localhost,1433;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
             # - ASPNETCORE_URLS=https://+:443;http://+:80
             # - "ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd"
             # - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
@@ -14,6 +14,7 @@ services:
             # - "8001:443"
         depends_on:
             - db
+        command: ["dotnet", "ef", "database update"]
     db:
         image: "mcr.microsoft.com/mssql/server"
         environment:
