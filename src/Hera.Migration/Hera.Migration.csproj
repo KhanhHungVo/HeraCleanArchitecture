@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Hera.Infrastructure\Hera.Infrastructure.csproj" />
-    <ProjectReference Include="..\src\Hera.WebApi\Hera.WebApi.csproj" />
+    <ProjectReference Include="..\Hera.Infrastructure\Hera.Infrastructure.csproj" />
+    <ProjectReference Include="..\Hera.WebApi\Hera.WebApi.csproj" />
   </ItemGroup>
 
 </Project>
