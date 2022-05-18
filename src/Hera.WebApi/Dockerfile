@@ -19,10 +19,19 @@ COPY . .
 WORKDIR "/src/src/Hera.WebApi"
 RUN dotnet build "Hera.WebApi.csproj" -c Release -o /app/build
 
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS migration
+WORKDIR /src
+COPY . .
+WORKDIR /src/Hera.Migration
+RUN dotnet build "Hera.Migration/csproj" -c Release -o /app/publish
+
 FROM build AS publish
 RUN dotnet publish "Hera.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
+WORKDIR /migration
+COPY --from=migration /app/migration .
+
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Hera.WebApi.dll"]
