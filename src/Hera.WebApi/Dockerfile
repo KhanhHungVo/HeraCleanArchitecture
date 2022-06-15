@@ -23,7 +23,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS migration
 WORKDIR /src
 COPY . .
 WORKDIR /src/Hera.Migration
-RUN dotnet build "Hera.Migration/csproj" -c Release -o /app/publish
+RUN dotnet build "Hera.Migration/csproj" -c Release -o /app/migration
 
 FROM build AS publish
 RUN dotnet publish "Hera.WebApi.csproj" -c Release -o /app/publish
