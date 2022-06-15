@@ -14,7 +14,6 @@ services:
             # - "8001:443"
         depends_on:
             - db
-        command: ["dotnet", "ef", "database update"]
     db:
         image: "mcr.microsoft.com/mssql/server"
         environment:

@@ -69,6 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.InitializeDatabase();
 
 app.UseHttpsRedirection();
 
