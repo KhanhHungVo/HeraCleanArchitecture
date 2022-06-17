@@ -22,6 +22,8 @@ RUN dotnet build "Hera.WebApi.csproj" -c Release -o /app/build
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS migration
 WORKDIR /src
 COPY . .
+RUN dotnet restore "src/Hera.Migration/Hera.Migration.csproj"
+COPY . .
 WORKDIR /src/Hera.Migration
 RUN dotnet build "Hera.Migration/csproj" -c Release -o /app/migration
 
