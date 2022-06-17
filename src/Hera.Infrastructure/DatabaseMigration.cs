@@ -1,4 +1,3 @@
-using Hera.Application.Common.Interfaces;
 using Hera.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
