@@ -58,7 +58,8 @@ namespace Hera.WebApi.Controllers
             {
                 return BadRequest();
             }
-            return Ok(await _mediator.Send(command));
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         [HttpGet]

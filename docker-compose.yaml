@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: src/Hera.WebApi/Dockerfile  
         environment:
-            - "ConnectionStrings__HeraDatabase=Server=localhost,1433;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
+            - "ConnectionStrings__HeraDatabase=Server=db;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
             # - ASPNETCORE_URLS=https://+:443;http://+:80
             # - "ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd"
             # - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
@@ -14,24 +14,23 @@ services:
             # - "8001:443"
         depends_on:
             - db
-        volumes:
-          - ./entrypoint.sh:/script/entrypoint.sh
-          - ./wait-for-it.sh:/script/wait-for-it.sh:ro  
-        entrypoint:
-            [
-                "/script/wait-for-it.sh",
-                "db:1433",
-                "--strict",
-                "--timeout=60",
-                "--",
-                "/script/entrypoint.sh"
-            ]
+        # volumes:
+        #   - ./entrypoint.sh:/script/entrypoint.sh
+        #   - ./wait-for-it.sh:/script/wait-for-it.sh:ro  
+        # entrypoint:
+        #     [
+        #         "/script/wait-for-it.sh",
+        #         "db:1433",
+        #         "--strict",
+        #         "--timeout=60",
+        #         "--",
+        #         "/script/entrypoint.sh"
+        #     ]
     db:
         image: "mcr.microsoft.com/mssql/server"
         environment:
             SA_PASSWORD: "Pa55w0rd2022"
             ACCEPT_EULA: "Y"
-            DB_NAME: "Hera"
         volumes:
           - ./Hera-sqlmigration.sql:/scripts/Hera-sqlmigration.sql:ro
         command:
@@ -42,41 +41,41 @@ services:
                 pid=$$!
                 
                 echo "Waiting for MS SQL to be available..."
-                /opt/mssql-tools/bin/sqlcmd -l 30 -S sqlserver -U sa -P $SA_PASSWORD -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
+                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
                 is_up=$$?
                 i=0
                 while [ $$is_up -ne 0 ] ; do
                 ((i++))
-                if [ $$i -eq $Retry ]
+                if [ $$i -eq 3 ]
                 then
                     echo "Server failed to start."
-                    break
+                    exit 0
                 else
                     echo -e $$(date)
-                    /opt/mssql-tools/bin/sqlcmd -l 30 -S sqlserver -U sa -P $SA_PASSWORD -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
+                    /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
                     is_up=$$?
                     sleep 5
                 fi
                 done
 
-                echo "Creating $DB_NAME database..."
-                /opt/mssql-tools/bin/sqlcmd -l 30 -S sqlserver -U sa -P $SA_PASSWORD -Q "CREATE DATABASE $DB_NAME"
+                echo "Creating Hera database..."
+                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "CREATE DATABASE Hera"
 
                 echo "Running sql scripts..."
                 for script in /scripts/*.sql
-                do /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P $SA_PASSWORD -l 30 -d $DB_NAME -e -i $$script
+                do /opt/mssql-tools/bin/sqlcmd -S db -U sa -P Pa55w0rd2022 -l 30 -d Hera -e -i $$script
                 is_executed=$$?
                 j=0
                 while [ $$is_executed -ne 0 ]
                 do
                     ((j++))
-                    if [ $$j -eq $Retry ]
+                    if [ $$j -eq 3 ]
                     then
                     echo "Login failed."
                     break
                     else
                     echo "Retry executing $$script..."
-                    /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P $SA_PASSWORD -l 30 -d $DB_NAME -e -i $$script
+                    /opt/mssql-tools/bin/sqlcmd -S db -U sa -P Pa55w0rd2022 -l 30 -d Hera -e -i $$script
                     is_executed=$$?
                     sleep 5
                     fi
