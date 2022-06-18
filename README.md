@@ -43,4 +43,6 @@ To use `dotnet-ef` for your migrations please add the following flags to your co
        - Windows using linux container `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }`
        - Mac or Linux  `dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }`
        - `dotnet dev-certs https --trust`
+    * Generate migration script `.\build-scripts\generate-sqlmigrationscript.ps1`
+      - If get issue about digital signed `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
     * Start the container `docker-compose -f "docker-compose.yaml" up -d`
