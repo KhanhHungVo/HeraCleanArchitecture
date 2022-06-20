@@ -26,17 +26,6 @@ namespace Hera.Application.Users.Commands.CreateUser
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            //var user = new User
-            //{
-            //    FirstName = request.FirstName,
-            //    LastName = request.LastName,
-            //    UserName = request.UserName,
-            //    Password = request.Password,
-            //    Email = request.Email,
-            //};
-            //await  _context.Users.AddAsync(user);
-            //await _context.SaveChangesAsync();
-            //return user.Id;
             return await _userService.RegisterUser(request);
         }
     }

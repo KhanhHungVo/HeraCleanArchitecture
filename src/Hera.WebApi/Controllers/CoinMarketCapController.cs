@@ -1,4 +1,6 @@
 ﻿using Hera.Application.Common.Interfaces;
+using Hera.Application.Crypto.Commands.RecordCryptoCoins;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hera.WebApi.Controllers
@@ -8,12 +10,14 @@ namespace Hera.WebApi.Controllers
     {
         private readonly ICoinMarketCapService _coinMarketCapService;
         private readonly ILogger _logger;
+        private readonly IMediator _mediator;
 
         public CoinMarketCapController(ICoinMarketCapService coinMarketCapService, ILogger<CoinMarketCapController> logger
-        ) 
+, IMediator mediator)
         {
             _coinMarketCapService = coinMarketCapService;
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -40,13 +44,14 @@ namespace Hera.WebApi.Controllers
             return Ok(result);
         }
 
-        [Route("record-crypto-coins")]
-        [HttpGet]
-        public async Task<IActionResult> RecordCryptoCoin()
+        [Route("record-crypto-coins/{number}")]
+        [HttpPost]
+        public async Task<IActionResult> RecordCryptoCoin(int number)
         {
-            var result = await _coinMarketCapService.GetListCoinBasicInfo(1, 10);
-
-            return Ok(result);
+            var command = new RecordCryptoCommand {
+                Number = number
+            };
+            return Ok(await _mediator.Send(command));
         }
     }
 }
