@@ -13,6 +13,7 @@ namespace Hera.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IUserService,UserService>();
+            services.AddScoped<ICryptoService,CryptoService>();
             return services;
         }
     }

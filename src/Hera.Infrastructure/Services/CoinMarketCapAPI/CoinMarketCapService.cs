@@ -131,6 +131,7 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             dto.CirculatingSupply = item.CirculatingSupply;
             dto.Volume24h = item.Quote["USD"]?.Volume24H;
             dto.CirculatingSupply = item.CirculatingSupply;
+            dto.CurrentDateTime = DateTime.Now;
             return dto;
         }
         public CryptoCoin MapToCoinBasicInfo(Dictionary<string, QuoteLatestDataRs> dict)

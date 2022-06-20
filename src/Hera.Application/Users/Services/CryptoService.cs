@@ -21,6 +21,7 @@ namespace Hera.Application.Users.Services
         public async Task RecordCryptoCoins(List<CryptoCoin> cryptoCoins)
         {
             await _context.CryptoCoins.AddRangeAsync(cryptoCoins);
+            await _context.SaveChangesAsync();
         }
 
     }
