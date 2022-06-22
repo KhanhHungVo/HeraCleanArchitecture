@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: src/Hera.WebApi/Dockerfile  
         environment:
-            - "ConnectionStrings__HeraDatabase=Server=db;Database=Hera;User=sa;Password=Pa55w0rd2022;MultipleActiveResultSets=true"
+            ConnectionStrings__HeraDatabase: $DB_CONNECTION_STRING
             # - ASPNETCORE_URLS=https://+:443;http://+:80
             # - "ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd"
             # - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
@@ -29,7 +29,7 @@ services:
     db:
         image: "mcr.microsoft.com/mssql/server"
         environment:
-            SA_PASSWORD: "Pa55w0rd2022"
+            SA_PASSWORD: "${SA_PASSWORD}"
             ACCEPT_EULA: "Y"
         volumes:
           - ./Hera-sqlmigration.sql:/scripts/Hera-sqlmigration.sql:ro
@@ -41,7 +41,7 @@ services:
                 pid=$$!
                 
                 echo "Waiting for MS SQL to be available..."
-                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
+                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P ${SA_PASSWORD} -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
                 is_up=$$?
                 i=0
                 while [ $$is_up -ne 0 ] ; do
@@ -52,18 +52,18 @@ services:
                     exit 0
                 else
                     echo -e $$(date)
-                    /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
+                    /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P ${SA_PASSWORD} -Q "SET NOCOUNT ON SELECT \"YAY WE ARE UP\" , @@servername"
                     is_up=$$?
                     sleep 5
                 fi
                 done
 
                 echo "Creating Hera database..."
-                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P Pa55w0rd2022 -Q "CREATE DATABASE Hera"
+                /opt/mssql-tools/bin/sqlcmd -l 30 -S db -U sa -P ${SA_PASSWORD} -Q "CREATE DATABASE Hera"
 
                 echo "Running sql scripts..."
                 for script in /scripts/*.sql
-                do /opt/mssql-tools/bin/sqlcmd -S db -U sa -P Pa55w0rd2022 -l 30 -d Hera -e -i $$script
+                do /opt/mssql-tools/bin/sqlcmd -S db -U sa -P ${SA_PASSWORD} -l 30 -d Hera -e -i $$script
                 is_executed=$$?
                 j=0
                 while [ $$is_executed -ne 0 ]
@@ -75,7 +75,7 @@ services:
                     break
                     else
                     echo "Retry executing $$script..."
-                    /opt/mssql-tools/bin/sqlcmd -S db -U sa -P Pa55w0rd2022 -l 30 -d Hera -e -i $$script
+                    /opt/mssql-tools/bin/sqlcmd -S db -U sa -P ${SA_PASSWORD} -l 30 -d Hera -e -i $$script
                     is_executed=$$?
                     sleep 5
                     fi
