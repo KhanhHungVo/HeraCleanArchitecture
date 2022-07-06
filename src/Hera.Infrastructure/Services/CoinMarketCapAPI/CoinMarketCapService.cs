@@ -18,7 +18,7 @@ namespace Hera.Infrastructure.Services.CoinMarketCapAPI
             BaseAddress = new Uri(BASE_URL)
         };
 
-        public CoinMarketCapService() : base()
+        public CoinMarketCapService()
         {
             HttpClient.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", API_KEY);
             HttpClient.DefaultRequestHeaders.Add("Accepts", "application/json");

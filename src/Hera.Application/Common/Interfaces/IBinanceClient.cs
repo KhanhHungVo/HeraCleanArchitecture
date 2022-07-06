@@ -1,6 +1,6 @@
 namespace Hera.Application.Common.Interfaces
 {
-    public interface IBinanceClient
+    public interface IBinanceService
     {
          
     }
