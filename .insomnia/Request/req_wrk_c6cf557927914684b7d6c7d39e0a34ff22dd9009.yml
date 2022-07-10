@@ -1,0 +1,21 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ff22dd9009
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836336
+created: 1657414836336
+url: "{{ base_url }}/WeatherForecast"
+name: /WeatherForecast
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1657414836336
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

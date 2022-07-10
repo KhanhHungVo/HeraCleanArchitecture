@@ -1,0 +1,29 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ff17720ee1
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836341
+created: 1657414836341
+url: "{{ base_url }}/User/authenticate"
+name: /User/authenticate
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "userName": "string",
+      "passWord": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1657414836341
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

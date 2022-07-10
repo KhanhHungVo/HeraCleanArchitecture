@@ -1,0 +1,21 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ffb0b9fef9
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836338
+created: 1657414836338
+url: "{{ base_url }}/User/{{ id }}"
+name: /User/{id}
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1657414836338
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

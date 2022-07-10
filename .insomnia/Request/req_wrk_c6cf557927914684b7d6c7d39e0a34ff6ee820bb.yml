@@ -1,0 +1,24 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ff6ee820bb
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836342
+created: 1657414836342
+url: "{{ base_url }}/api/CoinMarketCap/coin"
+name: /api/CoinMarketCap/coin
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: symbol
+    disabled: true
+    value: string
+headers: []
+authentication: {}
+metaSortKey: -1657414836342
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

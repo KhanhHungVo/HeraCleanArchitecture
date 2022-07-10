@@ -1,0 +1,33 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ff0f83a38b
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836343
+created: 1657414836343
+url: "{{ base_url }}/api/CoinMarketCap/list-coins"
+name: /api/CoinMarketCap/list-coins
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: start
+    disabled: true
+    value: "1"
+  - name: limit
+    disabled: true
+    value: "50"
+  - name: sortColumn
+    disabled: true
+    value: MarketCap
+  - name: sortOrder
+    disabled: true
+    value: string
+headers: []
+authentication: {}
+metaSortKey: -1657414836343
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

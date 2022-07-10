@@ -1,0 +1,21 @@
+_id: req_wrk_c6cf557927914684b7d6c7d39e0a34ff97ea83d2
+type: Request
+parentId: wrk_c6cf557927914684b7d6c7d39e0a34ff
+modified: 1657414836342
+created: 1657414836342
+url: "{{ base_url }}/api/CoinMarketCap/record-crypto-coins/{{ number }}"
+name: /api/CoinMarketCap/record-crypto-coins/{number}
+description: ""
+method: POST
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1657414836342
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
