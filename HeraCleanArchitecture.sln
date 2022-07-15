@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hera.Infrastructure", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hera.WebApi", "src\Hera.WebApi\Hera.WebApi.csproj", "{D55D527C-1C55-4BB4-8AEE-7C2AFAC0204C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hera.Migration", "src\Hera.Migration\Hera.Migration.csproj", "{B16E60EE-7CE6-4362-8888-DDA3A34E3930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hera.Migration", "src\Hera.Migration\Hera.Migration.csproj", "{B16E60EE-7CE6-4362-8888-DDA3A34E3930}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hera.Functions", "Hera.Functions\Hera.Functions.csproj", "{01F6A5BA-CD20-4832-9754-2C9A93FE7303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B16E60EE-7CE6-4362-8888-DDA3A34E3930}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B16E60EE-7CE6-4362-8888-DDA3A34E3930}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B16E60EE-7CE6-4362-8888-DDA3A34E3930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F6A5BA-CD20-4832-9754-2C9A93FE7303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F6A5BA-CD20-4832-9754-2C9A93FE7303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F6A5BA-CD20-4832-9754-2C9A93FE7303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F6A5BA-CD20-4832-9754-2C9A93FE7303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
